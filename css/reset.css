@@ -1,0 +1,368 @@
+/* font-family: "OpenSansCondensedLight"; */
+@font-face {
+	font-family:"OpenSans-CondensedLight";
+	src: url('../css/fonts/OpenSans-CondensedLight_gdi.eot');
+	src: url('../css/fonts/OpenSans-CondensedLight_gdi.eot?#iefix') format('embedded-opentype'),
+		url('../css/fonts/OpenSans-CondensedLight_gdi.woff') format('woff'),
+		url('../css/fonts/OpenSans-CondensedLight_gdi.ttf') format('truetype'),
+		url('../css/fonts/OpenSans-CondensedLight_gdi.otf') format('opentype'),
+		url('../css/fonts/OpenSans-CondensedLight_gdi.svg#OpenSans-CondensedLight') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+/* font-family: "OpenSansCondensedLightItalic"; */
+@font-face {
+	font-family:'OpenSans-CondensedLightItalic';
+	src: url('../css/fonts/OpenSans-CondensedLightItalic_gdi.eot');
+	src: url('../css/fonts/OpenSans-CondensedLightItalic_gdi.eot?#iefix') format('embedded-opentype'),
+		url('../css/fonts/OpenSans-CondensedLightItalic_gdi.woff') format('woff'),
+		url('../css/fonts/OpenSans-CondensedLightItalic_gdi.ttf') format('truetype'),
+		url('../css/fonts/OpenSans-CondensedLightItalic_gdi.otf') format('opentype'),
+		url('../css/fonts/OpenSans-CondensedLightItalic_gdi.svg#OpenSans-CondensedLightItalic') format('svg');
+	font-weight: 300;
+	font-stretch: condensed;
+	unicode-range: U+0020-2212;
+}
+/* font-family: "OpenSansCondensedBold"; */
+@font-face {
+	font-family:'OpenSans-CondensedBold';
+	src: url('../css/fonts/OpenSans-CondensedBold_gdi.eot');
+	src: url('../css/fonts/OpenSans-CondensedBold_gdi.eot?#iefix') format('embedded-opentype'),
+		url('../css/fonts/OpenSans-CondensedBold_gdi.woff') format('woff'),
+		url('../css/fonts/OpenSans-CondensedBold_gdi.ttf') format('truetype'),
+		url('../css/fonts/OpenSans-CondensedBold_gdi.otf') format('opentype'),
+		url('../css/fonts/OpenSans-CondensedBold_gdi.svg#OpenSans-CondensedBold') format('svg');
+	font-weight: 700;
+	font-style: normal;
+	font-stretch: condensed;
+	unicode-range: U+0020-20AC;
+}
+@font-face {
+  font-family:'Lato-Light';
+  src: url('../css/fonts/Lato-Light_gdi.eot');
+  src: url('../css/fonts/Lato-Light_gdi.eot?#iefix') format('embedded-opentype'),
+    url('../css/fonts/Lato-Light_gdi.woff') format('woff'),
+    url('../css/fonts/Lato-Light_gdi.ttf') format('truetype'),
+    url('../css/fonts/Lato-Light_gdi.otf') format('opentype'),
+    url('../css/fonts/Lato-Light_gdi.svg#Lato-Light') format('svg');
+  font-weight: 300;
+  font-style: normal;
+  font-stretch: condensed;
+  unicode-range: U+0020-2212;
+}
+@font-face {
+  font-family:'Lato-LightItalic';
+  src: url('../css/fonts/Lato-LightItalic_gdi.eot');
+  src: url('../css/fonts/Lato-LightItalic_gdi.eot?#iefix') format('embedded-opentype'),
+    url('../css/fonts/Lato-LightItalic_gdi.woff') format('woff'),
+    url('../css/fonts/Lato-LightItalic_gdi.ttf') format('truetype'),
+    url('../css/fonts/Lato-LightItalic_gdi.otf') format('opentype'),
+    url('../css/fonts/Lato-LightItalic_gdi.svg#Lato-LightItalic') format('svg');
+  font-weight: 300;
+  font-style: normal;
+  font-stretch: condensed;
+  unicode-range: U+0020-2212;
+}
+@font-face {
+  font-family:'Lato-Regular';
+  src: url('../css/fonts/Lato-Regular_gdi.eot');
+  src: url('../css/fonts/Lato-Regular_gdi.eot?#iefix') format('embedded-opentype'),
+    url('../css/fonts/Lato-Regular_gdi.woff') format('woff'),
+    url('../css/fonts/Lato-Regular_gdi.ttf') format('truetype'),
+    url('../css/fonts/Lato-Regular_gdi.otf') format('opentype'),
+    url('../css/fonts/Lato-Regular_gdi.svg#Lato-Regular') format('svg');
+  font-weight: 300;
+  font-style: normal;
+  font-stretch: condensed;
+  unicode-range: U+0020-2212;
+}
+@font-face {
+  font-family:'Lato-Bold';
+  src: url('../css/fonts/Lato-Bold_gdi.eot');
+  src: url('../css/fonts/Lato-Bold_gdi.eot?#iefix') format('embedded-opentype'),
+    url('../css/fonts/Lato-Bold_gdi.woff') format('woff'),
+    url('../css/fonts/Lato-Bold_gdi.ttf') format('truetype'),
+    url('../css/fonts/Lato-Bold_gdi.otf') format('opentype'),
+    url('../css/fonts/Lato-Bold_gdi.svg#Lato-Bold') format('svg');
+  font-weight: 300;
+  font-style: normal;
+  font-stretch: condensed;
+  unicode-range: U+0020-2212;
+}
+@font-face {
+  font-family:'Lato-Black';
+  src: url('../css/fonts/Lato-Black_gdi.eot');
+  src: url('../css/fonts/Lato-Black_gdi.eot?#iefix') format('embedded-opentype'),
+    url('../css/fonts/Lato-Black_gdi.woff') format('woff'),
+    url('../css/fonts/Lato-Black_gdi.ttf') format('truetype'),
+    url('../css/fonts/Lato-Black_gdi.otf') format('opentype'),
+    url('../css/fonts/Lato-Black_gdi.svg#Lato-Black') format('svg');
+  font-weight: 300;
+  font-style: normal;
+  font-stretch: condensed;
+  unicode-range: U+0020-2212;
+}
+@font-face {
+
+  font-family: 'OpenSans';
+
+  src: url('../css/fonts/OpenSans.eot?#iefix') format('embedded-opentype'), 
+
+  url('../css/fonts/OpenSans.woff') format('woff'), 
+
+  url('../css/fonts/OpenSans.ttf')  format('truetype'), 
+
+  url('../css/fonts/OpenSans.svg#OpenSans') format('svg');
+
+  font-weight: normal;
+
+  font-style: normal;
+
+}
+@font-face {
+
+  font-family: 'OpenSansLight';
+
+  src: url('../css/fonts/OpenSans-Light.eot?#iefix') format('embedded-opentype'), 
+
+  url('../css/fonts/OpenSans-Light.woff') format('woff'), 
+
+  url('../css/fonts/OpenSans-Light.ttf')  format('truetype'), 
+
+  url('../css/fonts/OpenSans-Light.svg#OpenSans') format('svg');
+
+  font-weight: normal;
+
+  font-style: normal;
+
+}
+@font-face {
+
+  font-family: 'OpenSansBold';
+
+  src: url('../css/fonts/OpenSans-Bold.eot?#iefix') format('embedded-opentype'), 
+
+  url('../css/fonts/OpenSans-Bold.woff') format('woff'), 
+
+  url('../css/fonts/OpenSans-Bold.ttf')  format('truetype'), 
+
+  url('../css/fonts/OpenSans-Bold.svg#OpenSans') format('svg');
+
+  font-weight: normal;
+
+  font-style: normal;
+
+}
+@font-face {
+    font-family: 'icomoon';
+    src:    url('../css/fonts/icomoon.eot?lbicgu');
+    src:    url('../css/fonts/icomoon.eot?lbicgu#iefix') format('embedded-opentype'),
+        url('../css/fonts/icomoon.ttf?lbicgu') format('truetype'),
+        url('../css/fonts/icomoon.woff?lbicgu') format('woff'),
+        url('../css/fonts/icomoon.svg?lbicgu#icomoon') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+[class^="icon-"], [class*=" icon-"] {
+    /* use !important to prevent issues with browser extensions that change fonts */
+    font-family: 'icomoon' !important;
+    speak: none;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+
+    /* Better Font Rendering =========== */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+.icon-whatsapp:before {
+    content: "\e925" !important; /* подставь фактический код */
+}
+.icon-arrow:before {
+    content: "\e900";
+}
+.icon-house:before {
+    content: "\e901";
+}
+.icon-pdf:before {
+    content: "\e902";
+}
+.icon-star:before {
+    content: "\e903";
+}
+.icon-meter:before {
+    content: "\e904";
+}
+.icon-plan:before {
+    content: "\e905";
+}
+.icon-insta:before {
+    content: "\e906" !important;
+}
+.icon-checked:before {
+    content: "\e907";
+}
+.icon-coffee:before {
+    content: "\e908";
+}
+.icon-community:before {
+    content: "\e909";
+}
+.icon-bath:before {
+    content: "\e90a";
+}
+.icon-bed:before {
+    content: "\e90b";
+}
+.icon-interface:before {
+    content: "\e90c";
+}
+.icon-adobe:before {
+    content: "\e90d";
+}
+.icon-marker:before {
+    content: "\e90e";
+}
+.icon-diamond:before {
+    content: "\e90f";
+}
+.icon-flat:before {
+    content: "\e910";
+}
+.icon-map:before {
+    content: "\e911";
+}
+.icon-newspaper:before {
+    content: "\e912";
+}
+.icon-eye:before {
+    content: "\e913";
+}
+.icon-safe:before {
+    content: "\e914";
+}
+.icon-pencil:before {
+    content: "\e915";
+}
+.icon-play:before {
+    content: "\e916";
+}
+.icon-info:before {
+    content: "\e917";
+}
+.icon-social:before {
+    content: "\e918";
+}
+.icon-vk:before {
+    content: "\e919"  !important;
+}
+.icon-facebook:before {
+    content: "\e91a" !important;
+}
+.icon-gmail:before {
+    content: "\e91b" !important;
+}
+.icon-twitter:before {
+    content: "\e91c" !important;
+}
+.icon-square:before {
+    content: "\e91d";
+}
+.icon-check:before {
+    content: "\e91e";
+}
+.icon-send:before {
+    content: "\e91f";
+}
+.icon-print:before {
+    content: "\e920";
+}
+.icon-phone:before {
+    content: "\e921";
+}
+.icon-ok:before {
+    content: "\e922";
+}
+.icon-viber:before {
+    content: "\e923" !important;
+}
+.icon-mail:before {
+    content: "\e924";
+}
+
+/*SEO*/
+div.container div.row.category {
+  font-size: 16px;
+}
+div.container div.row.category ol {
+ margin-left:40px;
+}
+div.container div.row.category ul {
+  list-style: outside none square;
+  margin-left: 40px;
+}
+div.container div.row.category ul li,div.container div.row.category ol li{
+  padding:5px;
+}
+div.container div.row.category h1,div.container div.row.category h2,div.container div.row.category h3 {
+  margin-top:15px;
+  margin-bottom:15px;
+}
+/* home*/
+div.container div.about-info ol {
+ margin-left:40px;
+}
+div.container div.about-info ul {
+  list-style: outside none square;
+  margin-left: 40px;
+}
+div.container div.about-info ul li,div.container div.about-info ol li{
+  padding:5px;
+}
+div.container div.about-info h1,div.container div.about-info h2,div.container div.about-info h3 {
+  margin-top:15px;
+  margin-bottom:15px;
+}
+/* end SEO */
+
+div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,
+form,fieldset,input,textarea,p,blockquote,th,td{padding:0;margin:0;}
+table{font-size: 16px;width: 100%;border-collapse:collapse;border-spacing:0;}
+fieldset,img, iframe{border:0;}
+ul,nav{list-style:none;}
+input:focus, button:focus,a:focus, textarea:focus, select:focus{outline:none !important;}
+textarea{resize:none;}
+html, body{height:100%;}
+body{height:100%;font: 20px/24px 'OpenSans', Arial, sans-serif;background-color:#fff;min-width:320px;color:#292929;letter-spacing:1px;margin:0 auto !important;overflow-x:hidden;overflow-y:scroll;-webkit-overflow-scrolling: touch;}
+section{max-width:100%;overflow:hidden;}
+a{color:#292929;text-decoration:none;}
+a:hover, a:active, a:focus{text-decoration:none;color:#3d97ac;}
+a img{border:none;}
+img{max-width:100%;max-height:100%;display:block;border-style:none;}
+noscript div{position:fixed;text-align:center;top:0;z-index:77777;left:0;right:0;width:100%;background:#fff;margin:0 auto;padding:0;border:3px solid red;font-size:14px;text-transform:uppercase;color:#707070;}
+noscript div a{text-decoration:underline;color:blue;}
+input,
+textarea,
+select{vertical-align:middle;color:#292929;}
+form, fieldset{margin:0;padding:0;border-style:none;}
+input[type="text"],
+input[type="file"],
+input[type="password"],
+input[type="submit"],
+input[type="email"],
+input[type="tel"],
+textarea, select{-webkit-appearance:none;-moz-appearance:none;-o-appearance:none;appearance:none;-moz-border-radius:0px;-webkit-border-radius:0px;border-radius:0px;}
+input[type="email"]{box-shadow:none;-webkit-box-shadow:none;}
+input[type="image"]{padding:0;border:none;}
+input[type="submit"]::-moz-focus-inner,
+input[type="button"]::-moz-focus-inner,
+button::-moz-focus-inner{border:0;padding:0;}
+input[type="submit"],
+input[type="button"]{cursor:pointer;}
+input[type="submit"]:focus,
+input[type="button"]:focus{outline:none;border:none;box-shadow:none;}
+button:focus{outline:none;border:none;box-shadow:none;}
+p{margin:0;word-wrap:break-word;}
+

@@ -1,0 +1,1 @@
+<?php return ["lang_default" => ['ua'],"lang_list" => ['ua','en','ru']];

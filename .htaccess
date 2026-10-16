@@ -1,0 +1,55 @@
+AddDefaultCharset utf-8
+Options +FollowSymlinks
+RewriteEngine on
+RewriteBase /
+
+# 0) Отдаём существующие файлы/папки напрямую (общее короткое замыкание)
+RewriteCond %{REQUEST_FILENAME} -f [OR]
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^ - [L]
+
+# 1) Схлопываем двойные слэши
+RewriteCond %{REQUEST_URI} ^(.*)/{2,}(.*)$
+RewriteRule . %1/%2 [R=301,L]
+
+# 2) Принудительный завершающий слэш для НЕ-файлов
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_URI} !(.*)/$ [NC]
+RewriteRule ^(.*[^/])$ $1/ [NC,L,R=301]
+
+# 3) Блокируем internal dummy connection
+RewriteCond %{HTTP_USER_AGENT} ^.*internal\ dummy\ connection.*$ [NC]
+RewriteRule .* - [F,L]
+
+# 4) Статика, которую всегда отдаем как есть
+RewriteRule ^(manager|assets)/ - [L]
+RewriteRule \.(jpg|jpeg|png|gif|ico|css|js|svg|webp|woff2?)$ - [L,NC]
+
+# 5) Явно разрешаем sitemap*.xml (индекс и языковые файлы)
+#    Это правило должно стоять ДО языковых редиректов!
+RewriteRule ^sitemap(_(ru|ua|all))?\.xml$ - [L,NC]
+
+# отдавать sitemap_index.xml при запросе /sitemap.xml
+RewriteRule ^sitemap\.xml$ sitemap_index.xml [L,NC]
+# ----------------- ЯЗЫКОВЫЕ ПРАВИЛА -----------------
+
+# UA: передаём lang=ua и q как есть
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^ua/(.*)$ index.php?lang=ua&q=$1 [L,NC,QSA]
+
+# RU (дефолт): только q
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ index.php?q=$1 [L,QSA]
+
+
+#<IfModule mod_headers.c>
+    # Ловим Origin с translate.goog и кладём в переменную окружения ACAO
+    #SetEnvIf Origin "https://[^ ]*\.translate\.goog$" ACAO=$0
+
+    #<FilesMatch "\.(ttf|otf|eot|woff|woff2|css|js)$">
+    #    Header always set Access-Control-Allow-Origin "%{ACAO}e" env=ACAO
+    #    Header always set Access-Control-Allow-Methods "GET, OPTIONS" env=ACAO
+    #</FilesMatch>
+#</IfModule>

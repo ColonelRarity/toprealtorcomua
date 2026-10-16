@@ -1,0 +1,30 @@
+body {
+  padding-top: 70px;
+  padding-bottom: 30px;
+}
+
+.theme-dropdown .dropdown-menu {
+  position: static;
+  display: block;
+  margin-bottom: 20px;
+}
+
+.theme-showcase > p > .btn {
+  margin: 5px 0;
+}
+
+.theme-showcase .navbar .container {
+  width: auto;
+}
+.container  {
+	width:95%;
+}
+.progress {
+	margin-bottom: 3px;
+}
+.list-group h2  {margin:0;}
+.table {margin-bottom: 0;}
+.tab-content {border:1px solid #ddd;border-top: 0px; padding:5px;pading-top: 10px;border-bottom-right-radius: 5px; border-bottom-left-radius: 5px;margin-bottom: 10px;}
+
+textarea {resize:vertical;}
+

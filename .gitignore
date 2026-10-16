@@ -1,0 +1,14 @@
+.DS_Store
+*.log
+error_log
+adminer.php
+assets/images/**
+!assets/images/.gitkeep
+assets/cache/**
+!assets/cache/.gitkeep
+assets/files/**
+!assets/files/.gitkeep
+assets/backup/
+assets/logs/
+assets/.thumbs/
+manager/includes/config.inc.php

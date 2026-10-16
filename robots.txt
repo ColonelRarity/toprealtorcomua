@@ -1,0 +1,13 @@
+User-agent: *
+Allow: /assets/cache/images/
+Allow: /css/
+Allow: /js/
+Allow: /templates/*/css/
+Disallow: /assets/cache/
+Disallow: /manager/
+Disallow: /*price_min
+Disallow: /*pdf
+Disallow: /*print
+Host: toprealtor.com.ua
+
+Sitemap: https://toprealtor.com.ua/sitemap_index.xml

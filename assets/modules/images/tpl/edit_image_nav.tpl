@@ -1,0 +1,1 @@
+<li class="<?php if($modx->config['lang_default'] == $lang) echo 'active'?>"><a href="#<?=$lang?>" data-toggle="tab"><?=$lang?></a></li>
