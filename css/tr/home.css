@@ -28,6 +28,13 @@ body.bg{
   overflow-x:hidden;
 }
 
+/* Typeface: the legacy sheet sets OpenSans/Lato/Garamond on ~80 selectors with higher specificity than any
+   component rule here, so Manrope is applied once, globally. Icon fonts are the only exception. */
+body,
+body :not(.fa):not(.fas):not(.far):not(.fab):not(.glyphicon):not([class^="icon-"]):not([class*=" icon-"]):not([class^="flaticon-"]):not([class*=" flaticon-"]):not(.fi):not(.lucide):not(.rev-control-btn){
+  font-family:Manrope,Arial,sans-serif !important;
+}
+
 .tr-wrap,
 #header .container,
 .main_search .container,
@@ -1679,10 +1686,17 @@ html.tr-motion .tr-reveal{
   opacity:0;
   transform:translateY(22px);
   transition:opacity .7s var(--tr-ease),transform .7s var(--tr-ease);
+  transition-delay:var(--d,0s);
 }
 html.tr-motion .tr-reveal.tr-in{
   opacity:1;
   transform:none;
+}
+/* While .tr-prep is on <html> the reveal state is applied without transitions (no fade-out flash on load). */
+html.tr-prep .tr-reveal,
+html.tr-prep .tr-rise{
+  transition:none !important;
+  animation:none !important;
 }
 html.tr-motion .tr-hero-line{
   animation:tr-enter .85s var(--tr-ease) both;
@@ -6316,10 +6330,6 @@ body:has(#gallery) .tr-object-meta{
   from{opacity:0;transform:translateY(42px)}
   to{opacity:1;transform:none}
 }
-html.tr-motion #tr-design-about,
-html.tr-motion #tr-design-about *{
-  font-family:Manrope,Arial,sans-serif;
-}
 html.tr-motion #tr-design-about .tr-rise{
   opacity:0;
 }
@@ -6338,9 +6348,25 @@ html.tr-motion #tr-design-about .is-on img,
 html.tr-motion #tr-design-about .tr-ab-hero-photo img{
   transform:scale(1);
 }
+/* Same wrap as the mockup: 1240px, widening to 1340px from 1440px viewports. */
 #tr-design-about{
-  width:min(1200px,calc(100% - 48px));
+  width:min(1240px,calc(100% - 64px));
   margin:0 auto;
+}
+#tr-design-about > .tr-wrap{
+  max-width:none;
+  padding-left:0;
+  padding-right:0;
+}
+@media (min-width:1440px){
+  #tr-design-about{
+    width:min(1340px,calc(100% - 64px));
+  }
+}
+@media (max-width:767px){
+  #tr-design-about{
+    width:calc(100% - 40px);
+  }
 }
 #tr-design-about h1,
 #tr-design-about h2,

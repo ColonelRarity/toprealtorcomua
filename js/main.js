@@ -3674,6 +3674,12 @@ $(function () {
 /* Visual hooks for the homepage layer. Old selectors stay in place. */
 (function () {
     if (/\/o-nas\/?/.test(location.pathname)) document.documentElement.classList.add('tr-about-soon');
+    var trMotionOk = !window.matchMedia('(prefers-reduced-motion: reduce)').matches && 'IntersectionObserver' in window;
+    /* Motion flag goes on <html> before any DOM work so CSS gated on it cannot be lost to a later JS error. */
+    if (trMotionOk) {
+        document.documentElement.classList.add('tr-motion', 'tr-prep');
+        window.setTimeout(function () { document.documentElement.classList.remove('tr-prep'); }, 3000);
+    }
     function ready(fn) {
         if (document.readyState === 'loading') {
             document.addEventListener('DOMContentLoaded', fn);
@@ -4385,7 +4391,7 @@ $(function () {
             host.classList.add('tr-similar-grid');
         })();
 
-        (function setupPages() {
+        try { (function setupPages() {
             var cat = document.querySelector('.objects .row.category');
             if (cat && /квартир/i.test((cat.querySelector('h1') || cat).textContent || '') && !cat.querySelector('.tr-cat-short')) {
                 var full = document.createElement('div');
@@ -4484,7 +4490,7 @@ $(function () {
                     var whyTitle = why.querySelector('.page-title');
                     if (whyTitle) {
                         whyTitle.textContent = t('Почему выбирают нас', 'Чому обирають нас');
-                        why.insertBefore(whyLabel, whyTitle);
+                        whyTitle.parentNode.insertBefore(whyLabel, whyTitle);
                     }
                     wrap.appendChild(why);
                 }
@@ -4840,42 +4846,83 @@ $(function () {
                     }
                 }
             }
-        })();
+        })(); } catch (pageErr) {
+            if (window.console && console.warn) console.warn('TR page layer:', pageErr);
+        }
 
 
-        var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-        var blocks = document.querySelectorAll('.objects, .novelty, .inform, .about, .how, #footer');
-        if (!reduce && 'IntersectionObserver' in window) {
-            document.documentElement.classList.add('tr-motion');
-            var seen = new IntersectionObserver(function (entries) {
-                entries.forEach(function (entry) {
-                    if (!entry.isIntersecting) return;
-                    entry.target.classList.add('tr-in');
-                    seen.unobserve(entry.target);
+        /* Scroll motion. Mirrors the mockup: individual cards/blocks rise in with a small stagger,
+           elements already in view are shown at once, and nothing can stay hidden if the observer never fires. */
+        if (trMotionOk) {
+            try {
+                var root = document.documentElement;
+                var revealSel = [
+                    '.objects .page-title', '.objects .objects-box > *', '.objects .objects-item',
+                    '.novelty .page-title', '.novelty .slidernov-item', '.novelty .nov',
+                    '.inform .page-title', '.inform .inform-slider__item',
+                    '.about .about-info', '.about .about-info__title', '.about .tr-about-copy',
+                    '.why .page-title', '.why .why-item',
+                    '.how .page-title', '.how .how-item', '.how .tr-step',
+                    '#footer .foot-top .col-sm-3', '#footer .foot-top .col-xs-6', '#footer .tr-foot-brand',
+                    '.object-list__item', '.tr-card', '.tr-similar .tr-card'
+                ].join(',');
+                var revealNodes = Array.prototype.slice.call(document.querySelectorAll(revealSel)).filter(function (el) {
+                    return !(el.closest && el.closest('.modal, .tr-drawer, .owl-item.cloned'));
                 });
-            }, {threshold: 0.12});
-            blocks.forEach(function (el) {
-                el.classList.add('tr-reveal');
-                seen.observe(el);
-            });
-            var aboutNodes = document.querySelectorAll('#tr-design-about .tr-ab-intro, #tr-design-about .tr-ab-chapter, #tr-design-about .tr-ab-photo-pair, #tr-design-about .tr-ab-brand-scene, #tr-design-about .tr-ab-team-heading, #tr-design-about .tr-ab-branch, #tr-design-about .tr-ab-person, #tr-design-about .tr-ab-contact, #tr-design-about .tr-ab-review, #tr-design-about .tr-ab-why, #tr-design-about .tr-ab-why .why-item');
-            aboutNodes.forEach(function (el, index) {
-                el.classList.add('tr-rise');
-                el.style.setProperty('--d', ((index % 6) * 0.07) + 's');
-            });
-            window.setTimeout(function () {
-                var aboutSeen = new IntersectionObserver(function (entries) {
+                /* Keep only outermost matches so a card and its parent never animate twice. */
+                revealNodes = revealNodes.filter(function (el) {
+                    var p = el.parentElement;
+                    while (p) { if (revealNodes.indexOf(p) !== -1) return false; p = p.parentElement; }
+                    return true;
+                });
+                revealNodes.forEach(function (el, index) {
+                    el.classList.add('tr-reveal');
+                    el.style.setProperty('--d', ((index % 4) * 0.06) + 's');
+                });
+
+                var aboutNodes = Array.prototype.slice.call(document.querySelectorAll('#tr-design-about .tr-ab-intro, #tr-design-about .tr-ab-chapter, #tr-design-about .tr-ab-photo-pair, #tr-design-about .tr-ab-brand-scene, #tr-design-about .tr-ab-team-heading, #tr-design-about .tr-ab-branch, #tr-design-about .tr-ab-person, #tr-design-about .tr-ab-contact, #tr-design-about .tr-ab-review, #tr-design-about .tr-ab-why, #tr-design-about .tr-ab-why .why-item'));
+                aboutNodes.forEach(function (el, index) {
+                    el.classList.add('tr-rise');
+                    el.style.setProperty('--d', ((index % 6) * 0.07) + 's');
+                });
+
+                var inView = function (el) {
+                    var r = el.getBoundingClientRect();
+                    return r.bottom > 0 && r.top < (window.innerHeight || root.clientHeight) * 0.92;
+                };
+                var show = function (el) {
+                    el.classList.add(el.classList.contains('tr-rise') ? 'is-on' : 'tr-in');
+                };
+                var all = revealNodes.concat(aboutNodes);
+
+                /* Elements already on screen appear instantly: no fade-out flash on load. */
+                all.forEach(function (el) { if (inView(el)) show(el); });
+                root.offsetWidth; // flush styles while .tr-prep disables transitions
+                root.classList.remove('tr-prep');
+
+                var seen = new IntersectionObserver(function (entries) {
                     entries.forEach(function (entry) {
                         if (!entry.isIntersecting) return;
-                        entry.target.classList.add('is-on');
-                        aboutSeen.unobserve(entry.target);
+                        show(entry.target);
+                        seen.unobserve(entry.target);
                     });
-                }, {threshold: 0.18, rootMargin: '0px 0px -10% 0px'});
-                aboutNodes.forEach(function (el) { aboutSeen.observe(el); });
-            }, 60);
+                }, {threshold: 0.12, rootMargin: '0px 0px -8% 0px'});
+                all.forEach(function (el) { seen.observe(el); });
+
+                /* Safety nets: bfcache restore, slow IO, or anything else that would leave content invisible. */
+                var revealVisible = function () { all.forEach(function (el) { if (inView(el)) show(el); }); };
+                window.addEventListener('pageshow', revealVisible);
+                window.addEventListener('load', revealVisible);
+                window.setTimeout(revealVisible, 1500);
+                window.setTimeout(function () { all.forEach(show); }, 8000);
+            } catch (motionErr) {
+                document.documentElement.classList.remove('tr-motion', 'tr-prep');
+                if (window.console && console.warn) console.warn('TR motion:', motionErr);
+            }
         }
 
         syncHeader();
     });
 })();
+
 /* TR_HOME_JS_END */
